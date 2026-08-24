@@ -1,7 +1,7 @@
 Package: ethnoecologyR
 Type: Package
 Title: Quantitative Ethnoecology Analysis and Landscape Knowledge Modeling
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person(
       given = "Marwan",
@@ -11,7 +11,7 @@ Authors@R: c(
       comment = c(ORCID = "0000-0003-2754-0640")
     )
   )
-Description: Tools for quantifying Traditional Ecological Knowledge (TEK) 
+Description: Description: Tools for quantifying Local Ecological Knowledge (LEK) 
     in landscape and ecosystem contexts. Implements quantitative ethnoecology 
     indices (Landscape Use Value, Cultural Importance in Ecology, Fidelity Level, 
     etc.) and provides Bayesian modeling and visualization tools for 
