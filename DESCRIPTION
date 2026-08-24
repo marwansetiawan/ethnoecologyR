@@ -1,0 +1,40 @@
+Package: ethnoecologyR
+Type: Package
+Title: Quantitative Ethnoecology Analysis and Landscape Knowledge Modeling
+Version: 0.1.0
+Authors@R: c(
+    person(
+      given = "Marwan",
+      family = "Setiawan",
+      email = "marw002@brin.go.id",
+      role = c("aut", "cre"),
+      comment = c(ORCID = "0000-0003-2754-0640")
+    )
+  )
+Description: Tools for quantifying Traditional Ecological Knowledge (TEK) 
+    in landscape and ecosystem contexts. Implements quantitative ethnoecology 
+    indices (Landscape Use Value, Cultural Importance in Ecology, Fidelity Level, 
+    etc.) and provides Bayesian modeling and visualization tools for 
+    participatory land-use decision analysis.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.3
+Imports: 
+    dplyr,
+    magrittr,
+    ggplot2,
+    tidyr,
+    circlize,
+    ggalluvial,
+    reshape2,
+    rlang,
+    boot,
+    rstan
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat
+Depends: 
+    R (>= 3.5)
+VignetteBuilder: knitr
