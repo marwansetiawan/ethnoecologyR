@@ -1,0 +1,24 @@
+citHeader("To cite ethnoecologyR in publications, please use:")
+
+bibentry(
+  bibtype = "Manual",
+  title = "ethnoecologyR: Quantitative Ethnoecology Analysis and Landscape Knowledge Modeling",
+  author = person(
+    given = "Marwan",
+    family = "Setiawan",
+    email = "marw002@brin.go.id",
+    comment = c(
+      ORCID = "https://orcid.org/0000-0003-2754-0640",
+      Scopus = "https://www.scopus.com/authid/detail.uri?authorId=57514223700",
+      GoogleScholar = "https://scholar.google.com.au/citations?user=h0n80sIAAAAJ&hl=en"
+    )
+  ),
+  year = "2026",
+  note = "R package version 0.1.0",
+  url = "https://github.com/marwansetiawan/ethnoecologyR",
+  textVersion = paste(
+    "Marwan Setiawan (2026). ethnoecologyR: Quantitative Ethnoecology Analysis",
+    "and Landscape Knowledge Modeling. R package version 0.1.0.",
+    "URL: https://github.com/marwansetiawan/ethnoecologyR"
+  )
+)
