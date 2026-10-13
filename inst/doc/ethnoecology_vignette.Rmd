@@ -1,0 +1,233 @@
+---
+title: "Quantitative ethnoecology analysis with ethnoecologyR"
+author: "Marwan Setiawan"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quantitative ethnoecology analysis with ethnoecologyR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(ethnoecologyR)
+```
+
+# Quantitative ethnoecology analysis with `ethnoecologyR`
+
+#### Marwan Setiawan, BRIN
+
+Please remember to cite the `ethnoecologyR` package if you use it in your publications. Use `citation("ethnoecologyR")` to get a citation for the latest version.
+
+> To cite package 'ethnoecologyR' in publications use:
+> 
+> Marwan Setiawan (2026). _ethnoecologyR: Quantitative Ethnoecology Analysis and Landscape Knowledge Modeling_. R package version 0.1.2.
+
+## A Critical Perspective on Ethnoecology Indices
+
+Quantitative ethnoecology is the study of the use and importance of landscape units and ecosystems in human cultures, using statistical and analytical methods to quantify and interpret data. This approach has emerged as a key tool for understanding the cultural and ecological significance of landscape units, and for evaluating the impact of human activities on ecosystems.
+
+While widely used in the literature, traditional ethnoecology indices have significant limitations that researchers should consider:
+
+- **Oversimplification**: Complex cultural-ecological relationships reduced to single numbers
+- **Context stripping**: Remove cultural, ecological, and historical context
+- **Methodological issues**: Sensitive to sampling design and interview methods
+- **Theoretical concerns**: Often lack strong theoretical foundations
+
+### When to use these indices:
+- Preliminary exploratory analysis
+- Comparison with existing literature that uses similar methods
+- As input variables for more sophisticated models (not as final results)
+
+### When to avoid these indices:
+- As primary evidence for policy decisions
+- For cross-cultural comparisons without careful validation
+- As standalone measures of "importance"
+
+The field of ethnoecology has a long history, with roots dating back to the early 20th century when researchers began to systematically study the relationships between humans and their environments. In recent decades, advances in statistical and computational techniques have enabled researchers to more rigorously and systematically analyze and interpret ethnoecological data, leading to a greater understanding of the complex and diverse ways in which landscapes are used and valued in different cultural and ecological contexts.
+
+Today, quantitative ethnoecology is an interdisciplinary field that draws on a range of methods and approaches from the natural and social sciences, including anthropology, ecology, geography, and sociology. It is a rapidly growing field that is making significant contributions to our understanding of human-environment relationships, and to the conservation and management of ecosystems.
+
+## Using the `ethnoecologyR` package
+
+The `ethnoecologyR` package offers quantitative tools to assess the cultural significance of landscape units based on informant consensus. The package closely follows several key papers on ethnoecology indices (Tardío and Pardo-de-Santayana 2008; Friedman et al. 1986; Reyes-García et al. 2006; Toledo 2002). The goal is to provide an easy-to-use platform for ethnoecologists to perform quantitative ethnoecology assessments.
+
+Users are highly encouraged to familiarize themselves with ethnoecology theory (Berkes 2012; Toledo 2002) and social-ecological systems theory (Ostrom 2009). An overview of this theoretical background will be helpful in understanding approaches in ethnoecology and formulating useful research questions.
+
+An example data set called `ethnoecology_data` is provided to show how standard quantitative ethnoecology data should be formatted to interface with the `ethnoecologyR` package. This is an ethnoecology data set including one column of 15 knowledge holder identifiers `informant` and one of 6 landscape unit names `landscape_unit`. The rest of the columns are the identified ethnoecology use categories. The data in the use categories is populated with counts of uses per person (should be 0 or 1 values).
+
+```{r}
+data(ethnoecology_data)
+head(ethnoecology_data)
+```
+
+Many of the functions in `ethnoecologyR` make use of `select()` and `filter()` functions of the `dplyr` package (Wickham et al. 2026) and pipe functions `%>%` from the `magrittr` package (Bache and Wickham 2025). The intention is that these should be easy to understand and use, and that they should allow users the chance to pull the code for these functions and change anything they see fit.
+
+## Ethnoecology indices functions
+
+Ethnoecology indices are numerical measures that are used to quantify the importance of landscape units in different cultural or ecological contexts. Some common ethnoecology indices are included here. These indices are often used to analyze ethnoecological data and to compare the relative importance of different landscape units within a particular culture or ecosystem.
+
+The standard quantitative ethnoecology indices are probably too narrow a tool for a proper assessment of human and ecological interactions of interest. Still, they can be a useful entry way into understanding some aspects of human populations and how they interact with nature. The steps required to calculate these indices offer a way to quantify intangible factors of how human communities interact with the world. They can come in handy as additive pieces for more holistic assessments and analyses.
+
+### Landscape Use (LU)
+
+The Landscape Use (LU) index is a measure of the overall importance of a landscape unit based on the total number of use reports. It is calculated as:
+
+`LU = sum of use reports for a landscape unit`
+
+```{r}
+LUs(ethnoecology_data)
+```
+
+### Cultural Importance in Ecology (CIE)
+
+The Cultural Importance in Ecology (CIE) index is a normalized measure of use intensity. It is calculated as:
+
+`CIE = LU / N`, where N is the number of informants.
+
+```{r}
+CIEs(ethnoecology_data)
+```
+
+### Frequency of Citation (FC)
+
+The Frequency of Citation (FC) is the number of informants who mention a landscape unit for any use.
+
+```{r}
+FCs_eco(ethnoecology_data)
+```
+
+### Fidelity Level (FL)
+
+The Fidelity Level (FL) is the percentage of informants who mention a landscape unit for a specific use category. It is calculated as:
+
+`FL = (number of informants mentioning the unit for a specific use / total number of informants mentioning the unit for any use) × 100`
+
+```{r}
+FLs_eco(ethnoecology_data, "use_forest")
+```
+
+### Number of Uses (NU)
+
+The Number of Uses (NU) is the total number of distinct use categories reported for each landscape unit.
+
+```{r}
+NUs_eco(ethnoecology_data)
+```
+
+### Cultural Value of Ecolandscape (CVe)
+
+The Cultural Value of Ecolandscape (CVe) is a composite index combining LU and FC. It is calculated as:
+
+`CVe = (LU / N) × (FC / N)`
+
+```{r}
+CVe_eco(ethnoecology_data)
+```
+
+## Working with figures
+
+Figures can help to visually represent the main ideas or key results of ethnoecology work. Here we walk through a few of the functions within the `ethnoecologyR` package for generating figures.
+
+### Chord diagrams with circlize
+
+The following chord plots are made using functions from the `circlize` package (Gu 2022). An example of the application of chord plots in ethnoecology is described in a study on agrobiodiversity in Uganda (Whitney, Bahati, and Gebauer 2018).
+
+The `ethno_landscape_chord()` function creates a chord diagram of ethnoecology uses and landscape units.
+
+```{r, fig.cap="Chord diagram of landscape units and uses"}
+ethno_landscape_chord(ethnoecology_data, by = "landscape_unit")
+```
+
+The function can also be used to create a chord diagram of ethnoecology uses and informants.
+
+```{r, fig.cap="Chord diagram of informants and uses"}
+ethno_landscape_chord(ethnoecology_data, by = "informant")
+```
+
+### Alluvial plots with ggalluvial
+
+The `ethno_landscape_alluvial()` function creates an alluvial diagram showing flows between informants, landscape units, and ecological uses.
+
+```{r, fig.cap="Alluvial plot of landscape uses"}
+ethno_landscape_alluvial(ethnoecology_data)
+```
+
+### Radial plot with ggplot2
+
+The `landscape_radial_plot()` function creates a radial bar plot to visualize multiple ethnoecology indices per landscape unit.
+
+```{r, fig.cap="Radial plot of multiple ethnoecology indices"}
+landscape_radial_plot(ethnoecology_data, list(LUs, CIEs, FCs_eco))
+```
+
+## Bayesian Consensus Modeling
+
+The `ethnoecologyR` package provides a Bayesian model (`ethno_bayes_land`) to estimate consensus among informants regarding landscape use and ecological knowledge. The model is fitted using Hamiltonian Monte Carlo via `rstan` (Stan Development Team 2024).
+
+```{r, eval = FALSE}
+fit <- ethno_bayes_land(ethnoecology_data, iter = 500, chains = 2)
+print(fit, pars = c("theta[1]", "theta[2]", "theta[3]"))
+```
+
+## Conclusions
+
+Quantitative ethnoecology offers a way to study the use and importance of landscape units in human cultures, using statistical and analytical methods to quantify and interpret data. This approach can be useful in a variety of contexts, including:
+
+- Understanding the cultural and ecological significance of landscape units
+- Evaluating the impact of human activities on ecosystems
+- Informing conservation and management strategies
+- Documenting local ecological knowledge (LEK)
+
+One of the main benefits of quantitative ethnoecology is that it allows researchers to rigorously and systematically analyze and interpret data, providing more reliable and objective insights into the role of landscape units in different cultural and ecological settings.
+
+Overall, the `ethnoecologyR` package provides a comprehensive set of tools for researchers and practitioners working in ethnoecology and related fields. By using these standardized methods and statistical analyses, researchers can more accurately compare and contrast the importance of different landscape units and evaluate the significance of their findings.
+
+## Acknowledgements
+
+This work was inspired by the pioneering contributions of:
+- Cory Whitney and the `ethnobotanyR` package
+- Tardío and Pardo-de-Santayana (2008) on cultural importance indices
+- Friedman et al. (1986) on fidelity level
+- Reyes-García et al. (2006) on cultural value
+- Berkes (2012) on sacred ecology
+
+The vignette was written and formatted using the handy tools provided by the `knitr` package (Xie 2025).
+
+## References
+
+Bache, Stefan Milton, and Hadley Wickham. 2025. Magrittr: A Forward-Pipe Operator for R. https://magrittr.tidyverse.org.
+
+Berkes, F. 2012. *Sacred Ecology*. 3rd ed. Routledge.
+
+Friedman, J., Z. Yaniv, A. Dafni, and D. Palewitch. 1986. "A Preliminary Classification of the Healing Potential of Medicinal Plants, Based on a Rational Analysis of an Ethnopharmacological Field Survey Among Bedouins in the Negev Desert, Israel." *Journal of Ethnopharmacology* 16(2-3): 275-287.
+
+Gu, Z. 2022. circlize: Circular Visualization. R package version 0.4.15.
+
+Ostrom, E. 2009. "A General Framework for Analyzing Sustainability of Social-Ecological Systems." *Science* 325(5939): 419-422.
+
+R Core Team. 2025. R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria.
+
+Reyes-García, V., T. Huanca, V. Vadez, W. Leonard, and D. Wilkie. 2006. "Cultural, Practical, and Economic Value of Wild Plants: A Quantitative Study in the Bolivian Amazon." *Economic Botany* 60(1): 62-74.
+
+Stan Development Team. 2024. RStan: The R Interface to Stan. R package version 2.32.6.
+
+Tardío, J., and M. Pardo-de-Santayana. 2008. "Cultural Importance Indices: A Comparative Analysis Based on the Useful Wild Plants of Southern Cantabria (Northern Spain)." *Economic Botany* 62(1): 24-39.
+
+Toledo, V. M. 2002. "Ethnoecology: A Conceptual Framework for the Study of Indigenous Knowledge of Nature." In *Ethnobiology and Biocultural Diversity*, edited by J. R. Stepp, F. S. Wyndham, and R. K. Zarger, 511-522. University of Georgia Press.
+
+Whitney, C. W., J. Bahati, and J. Gebauer. 2018. "Ethnobotany and Agrobiodiversity: Valuation of Plants in the Homegardens of Southwestern Uganda." *Ethnobiology Letters* 9(2): 1-12.
+
+Wickham, H., et al. 2026. dplyr: A Grammar of Data Manipulation. R package version 1.1.0.
+
+Wickham, H., and L. Henry. 2026. purrr: Functional Programming Tools. R package version 1.0.0.
+
+Wickham, H., D. Vaughan, and M. Girlich. 2025. tidyr: Tidy Messy Data. R package version 1.3.0.
+
+Xie, Y. 2025. knitr: A General-Purpose Package for Dynamic Report Generation in R. R package version 1.45.
+
+---

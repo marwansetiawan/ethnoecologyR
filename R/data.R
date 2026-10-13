@@ -1,0 +1,18 @@
+#' Data Uji Coba untuk ethnoecologyR
+#'
+#' Dataset sintetis untuk menguji fungsi-fungsi dalam paket ethnoecologyR.
+#' Berisi 15 informan, 6 unit lanskap, dan 6 kategori penggunaan (0/1).
+#'
+#' @format Data frame dengan 90 baris dan 8 kolom:
+#' \describe{
+#'   \item{informant}{ID informan (karakter)}
+#'   \item{landscape_unit}{Nama unit lanskap (karakter)}
+#'   \item{use_forest}{Penggunaan hutan (0/1)}
+#'   \item{use_water}{Penggunaan air (0/1)}
+#'   \item{use_agriculture}{Penggunaan pertanian (0/1)}
+#'   \item{use_hunting}{Penggunaan perburuan (0/1)}
+#'   \item{use_fishing}{Penggunaan perikanan (0/1)}
+#'   \item{use_gathering}{Penggunaan pengumpulan (0/1)}
+#' }
+#' @source Data sintetis buatan.
+"ethnoecology_data"
