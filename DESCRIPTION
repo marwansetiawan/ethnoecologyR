@@ -1,7 +1,8 @@
 Package: ethnoecologyR
 Type: Package
-Title: Quantitative Ethnoecology Analysis and Landscape Knowledge Modeling
-Version: 0.1.1
+Title: Quantitative Ethnoecology Analysis and Landscape Knowledge
+        Modeling
+Version: 0.1.4
 Authors@R: c(
     person(
       given = "Marwan",
@@ -11,30 +12,31 @@ Authors@R: c(
       comment = c(ORCID = "0000-0003-2754-0640")
     )
   )
-Description: Description: Tools for quantifying Local Ecological Knowledge (LEK) 
-    in landscape and ecosystem contexts. Implements quantitative ethnoecology 
-    indices (Landscape Use Value, Cultural Importance in Ecology, Fidelity Level, 
-    etc.) and provides Bayesian modeling and visualization tools for 
-    participatory land-use decision analysis.
+Description: A comprehensive toolkit for quantitative ethnoecology analysis 
+    and landscape knowledge modeling. Implements core indices including 
+    Landscape Use (LU), Cultural Importance in Ecology (CIE), Frequency of 
+    Citation (FC), Fidelity Level (FL), Number of Uses (NU), and Cultural 
+    Value of Ecolandscape (CVe). Provides visualization tools for chord 
+    diagrams, alluvial plots, and radial plots, as well as Bayesian consensus 
+    modeling and bootstrap resampling to support reproducible research in 
+    Local Ecological Knowledge (LEK) and participatory land-use decision 
+    analysis. Methods are based on Tardío and Pardo-de-Santayana (2008) 
+    <doi:10.1007/s12231-007-9004-5>, 
+    Reyes-García et al. (2006) 
+    <https://www.jstor.org/stable/4257061>, 
+    and Friedman et al. (1986) 
+    <doi:10.1037/0022-3514.51.6.1173>.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.3
-Imports: 
-    dplyr,
-    magrittr,
-    ggplot2,
-    tidyr,
-    circlize,
-    ggalluvial,
-    reshape2,
-    rlang,
-    boot,
-    rstan
-Suggests:
-    knitr,
-    rmarkdown,
-    testthat
-Depends: 
-    R (>= 3.5)
+Imports: dplyr, magrittr, ggplot2, tidyr, circlize, ggalluvial,
+        reshape2, rlang, boot, rstan
+Suggests: knitr, rmarkdown, testthat
+Depends: R (>= 3.5)
 VignetteBuilder: knitr
+Config/roxygen2/version: 8.1.0
+NeedsCompilation: no
+Packaged: 2026-10-05 14:56:30 UTC; marw0
+Author: Marwan Setiawan [aut, cre] (ORCID:
+    <https://orcid.org/0000-0003-2754-0640>)
+Maintainer: Marwan Setiawan <marw002@brin.go.id>
