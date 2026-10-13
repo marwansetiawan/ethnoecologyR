@@ -10,3 +10,6 @@ vignettes/*.html
 data-raw/
 .httr-oauth
 .quarto
+build/
+*.tar.gz
+*.Rcheck
