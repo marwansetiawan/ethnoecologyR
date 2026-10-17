@@ -14,10 +14,8 @@
 #' @importFrom dplyr bind_rows
 #'
 #' @examples
-#' \donttest{
-#'   data(ethnoecology_data)
-#'   landscape_radial_plot(ethnoecology_data, list(LUs, CIEs))
-#' }
+#' data(ethnoecology_data)
+#' landscape_radial_plot(ethnoecology_data, list(LU = LUs, CIE = CIEs))
 #'
 #' @export
 landscape_radial_plot <- function(data, indices_list) {
@@ -31,18 +29,22 @@ landscape_radial_plot <- function(data, indices_list) {
   results_list <- list()
   for (i in seq_along(indices_list)) {
     result <- indices_list[[i]](data)
-    # Add index name as a column for identification
-    result$index <- names(indices_list)[i]
-    if (is.null(result$index) || result$index == "") {
-      result$index <- paste0("Index_", i)
+
+    # Ambil nama indeks dengan aman
+    index_name <- names(indices_list)[i]
+    if (is.null(index_name) || is.na(index_name) || index_name == "") {
+      index_name <- paste0("Index_", i)
     }
+
+    # Tambahkan kolom index ke data frame
+    result$index <- index_name
+
     results_list[[i]] <- result
   }
 
   combined <- dplyr::bind_rows(results_list)
 
   # Rename columns: assume first column is landscape_unit, second is value
-  # This is more robust than assuming specific column positions
   colnames(combined)[1] <- "landscape_unit"
   colnames(combined)[2] <- "value"
 
