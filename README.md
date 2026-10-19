@@ -82,11 +82,3 @@ GitHub: @marwansetiawan
 GPL (>= 3)
 
 ---
-
-### 🚀 Langkah Eksekusi:
-1. Buka repo GitHub `ethnoecologyR` lo.
-2. Klik file `README.md`, lalu klik ikon **Pensil (Edit)** di pojok kanan atas.
-3. Hapus semua isinya, lalu **Paste** teks bahasa Inggris di atas.
-4. Klik **Commit changes**.
-
-Sekarang, peneliti dari Jepang, Jerman, atau Amerika yang buka GitHub lo bakal langsung paham dan tertarik buat pakai paketnya. Mantap, bro! *Go international!* 🌍🔥📦
