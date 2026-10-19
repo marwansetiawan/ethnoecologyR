@@ -1,41 +1,44 @@
-# ethnoecologyR <img src="man/figures/logo.png" align="right" height="139" alt="" />
+# ethnoecologyR
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/ethnoecologyR)](https://CRAN.R-project.org/package=ethnoecologyR)
 [![R-CMD-check](https://github.com/marwansetiawan/ethnoecologyR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/marwansetiawan/ethnoecologyR/actions/workflows/R-CMD-check.yaml)
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
-## 🌿 Quantitative Ethnoecology & Landscape TEK
+## 🌿 Quantitative Ethnoecology & Local Ecological Knowledge (LEK) Analysis
 
-**`ethnoecologyR`** adalah toolkit R untuk analisis kuantitatif **Local Ecological Knowledge (LEK)** dalam konteks lanskap dan ekosistem. Paket ini mengimplementasikan berbagai indeks standar etnoekologi dan dilengkapi dengan visualisasi interaktif serta pemodelan Bayesian untuk mendukung penelitian yang *reproducible*.
+**`ethnoecologyR`** is an R toolkit for the quantitative analysis of **Local Ecological Knowledge (LEK)** within landscape and ecosystem contexts. The package implements various standard ethnoecology indices and is equipped with interactive visualizations and Bayesian modeling to support reproducible research.
 
-Paket ini dirancang untuk membantu peneliti etnoekologi, antropolog, dan konservasionis dalam menganalisis data pengetahuan ekologi lokal secara cepat, akurat, dan terstandarisasi.
+It is designed to assist ethnoecologists, anthropologists, and conservationists in analyzing local ecological knowledge data rapidly, accurately, and in a standardized manner.
 
 ---
 
-## ✨ Fitur Utama
+## ✨ Key Features
 
-| Fungsi | Deskripsi |
+| Function | Description |
 | :--- | :--- |
-| `LUs()` | Menghitung Landscape Use (LU) |
-| `CIEs()` | Menghitung Cultural Importance in Ecology (CIE) |
-| `FCs_eco()` | Menghitung Frequency of Citation (FC) |
-| `FLs_eco()` | Menghitung Fidelity Level (FL) |
-| `NUs_eco()` | Menghitung Number of Uses (NU) |
-| `CVe_eco()` | Menghitung Cultural Value of Ecolandscape (CVe) |
-| `ethno_landscape_chord()` | Visualisasi hubungan Informan-Lanskap (Chord Diagram) |
-| `ethno_landscape_alluvial()` | Visualisasi aliran data (Alluvial Plot) |
-| `ethno_sankey_plot()` | Visualisasi aliran data (Sankey Diagram) |
-| `landscape_radial_plot()` | Visualisasi perbandingan multi-indeks (Radial Plot) |
-| `ethno_bayes_land()` | Pemodelan konsensus informan dengan MCMC (Stan) |
-| `ethno_boot_land()` | Bootstrap resampling untuk estimasi interval kepercayaan |
+| `LUs()` | Calculates Landscape Use (LU) |
+| `CIEs()` | Calculates Cultural Importance in Ecology (CIE) |
+| `FCs_eco()` | Calculates Frequency of Citation (FC) |
+| `FLs_eco()` | Calculates Fidelity Level (FL) |
+| `NUs_eco()` | Calculates Number of Uses (NU) |
+| `CVe_eco()` | Calculates Cultural Value of Ecolandscape (CVe) |
+| `ethno_landscape_chord()` | Visualizes Informant-Landscape relationships (Chord Diagram) |
+| `ethno_landscape_alluvial()` | Visualizes knowledge flow (Alluvial Plot) |
+| `ethno_sankey_plot()` | Visualizes knowledge flow (Sankey Diagram) |
+| `landscape_radial_plot()` | Visualizes multi-index comparisons (Radial Plot) |
+| `ethno_bayes_land()` | Informant consensus modeling using MCMC (Stan) |
+| `ethno_boot_land()` | Bootstrap resampling for confidence interval estimation |
 
 ---
 
-## 🔧 Instalasi
+## 🔧 Installation
 
-Anda dapat menginstal versi stabil dari **CRAN**:
+You can install the stable version from **CRAN**:
 
 ```r
 install.packages("ethnoecologyR")
+
+Or install the latest development version from GitHub:
+# install.packages("pak")
+pak::pak("marwansetiawan/ethnoecologyR")
